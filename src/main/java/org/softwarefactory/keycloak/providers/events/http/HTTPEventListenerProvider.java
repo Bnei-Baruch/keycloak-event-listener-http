@@ -64,7 +64,8 @@ public class HTTPEventListenerProvider implements EventListenerProvider {
     @Override
     public void onEvent(Event event) {
         // Ignore excluded events
-        if (excludedEvents != null && excludedEvents.contains(event.getType())) {
+        //if (excludedEvents != null && excludedEvents.contains(event.getType())) {
+	if (event.getType() != "LOGIN") {
             return;
         } else {
             tx.addEvent(event);
@@ -73,12 +74,13 @@ public class HTTPEventListenerProvider implements EventListenerProvider {
 
     @Override
     public void onEvent(AdminEvent adminEvent, boolean includeRepresentation) {
+	return;
         // Ignore excluded operations
-        if (excludedAdminOperations != null && excludedAdminOperations.contains(adminEvent.getOperationType())) {
-            return;
-        } else {
-            tx.addAdminEvent(adminEvent, includeRepresentation);
-        }
+        //if (excludedAdminOperations != null && excludedAdminOperations.contains(adminEvent.getOperationType())) {
+        //    return;
+        //} else {
+        //    tx.addAdminEvent(adminEvent, includeRepresentation);
+        //}
     }
 
     public void publishEvent(Event event) {
